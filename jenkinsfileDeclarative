@@ -21,10 +21,10 @@ steps {
 echo 'Archiving out!!'
 archiveArtifacts 'target/*.jar'
 }}
+}
 post {
 always {
 echo 'Pipeline finished'
 step([$class: 'JUnitResultArchiver', testResults: '/target/surefire-reports/Test*.xml'])
 }}
-}
 }
