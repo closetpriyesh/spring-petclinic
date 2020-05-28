@@ -1,0 +1,10 @@
+node {
+stage('checkout')
+	echo 'Checking out!'
+
+stage('build')
+	echo 'Building!'
+
+stage('checkout')
+	echo 'Archiving!'
+}
