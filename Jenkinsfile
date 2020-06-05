@@ -9,13 +9,24 @@ pipeline {
     }
 
     stage('build') {
-      steps {
-        echo 'Building out!!'
-        script {
-          env.PATH = "C:/Users/Priyesh_Kumar/Downloads/apache-maven-3.6.3-bin/apache-maven-3.6.3/bin;c:\\Windows\\System32"
+      parallel {
+        stage('build') {
+          steps {
+            echo 'Building out!!'
+            script {
+              env.PATH = "C:/Users/Priyesh_Kumar/Downloads/apache-maven-3.6.3-bin/apache-maven-3.6.3/bin;c:\\Windows\\System32"
+            }
+
+            bat 'mvn package'
+          }
         }
 
-        bat 'mvn package'
+        stage('API_Test') {
+          steps {
+            echo 'Running API Tests'
+          }
+        }
+
       }
     }
 
